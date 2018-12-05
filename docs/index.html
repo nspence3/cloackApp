@@ -11,6 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   <style>
   body{
+
     margin:0px;
     font-family: Helvetica;
   }
@@ -18,6 +19,7 @@
   @media (max-width:600px){
     #tzList{
         width: 100%;
+
     }
     #clockWrapper{
         width: 100%;
@@ -29,22 +31,29 @@
       display:block;
     }
     body.selected #tzList{
-      display: none;
+      animation: slideOutLeft 1s;
+      animation-fill-mode: both;
+    display: block;
     }
     body.selected #clockWrapper{
       display: block;
-    }
 
+    }
     body #tzList{
+
       display: block;
     }
     body #clockWrapper{
+
       display: none;
     }
     #clockWrapper h1{
       margin-top: 100px;
     }
-
+body.selected2 #tzList{
+  animation: slideOutRight1s;
+  animation-fill-mode: both;
+}
   }
   /* wide screen */
   @media (min-width:600px){
@@ -58,6 +67,7 @@
   #backButton{
     display:none;
   }
+
   button.action{
     color: black;
     box-shadow: none;
@@ -69,10 +79,21 @@
     border-radius: 50%;
     position: fixed;
     font-size: 50px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    transition:  width 2s, height 2s,;
   }
+  button.action:hover{
+    background-color: white;
+    color: gold;
+    width: 100px;
+    height: 100px:
+    transform: rotate(360deg);
+  }
+
   #tzList{
     display: block;
-    background:lightgray;
+    background:white;
     position:absolute;
     top: 0;
     left: 0;
@@ -80,6 +101,7 @@
     padding: 0px;
     height: auto;
     min-height: 100%;
+
   }
   #clockWrapper{
     text-align:center;
@@ -109,17 +131,25 @@
   #closeButton{
     top: 0;
     right: 0;
-    color: white;
+    color: gold;
   }
   button.box{
     display:block;
     position: relative;
     width: 100%;
     height: 115px;
+    cursor: pointer;
     overflow: hidden;
+    padding: 4px;
+    border-radius: 15px;
+    border: 2px solid gold;
+  }
+  button.box:hover{
+    background-color: gold;
+    color: white;
   }
   button.box .overlay{
-    display:block;
+    display: block;
     position:absolute;
     height: 100%;
     width: 100%;
@@ -166,6 +196,7 @@
   button.box.active{
     background: gold;
   }
+
   </style>
   <script>
   function closeClicked()
@@ -179,6 +210,7 @@
   {
     $("#tsSelectOverlay").fadeIn();
     $("#addButton").fadeOut();
+
   }
   function backClicked(){
     $("body").removeClass("selected");
@@ -220,6 +252,8 @@
 </head>
 
 <body onload='start()'>
+
+
   <div id='tzList'>
   </div>
   <div id='clockWrapper'>
